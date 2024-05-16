@@ -1,6 +1,6 @@
-# flutter_new_project
+# flutter-clean-arch
 
-A new Flutter project.
+Flutter with clean architecture 
 
 ## Getting Started
 
@@ -28,3 +28,5 @@ the `lib/src/localization` directory.
 To support additional languages, please visit the tutorial on
 [Internationalizing Flutter
 apps](https://flutter.dev/docs/development/accessibility-and-localization/internationalization)
+# flutter-clean-arch
+Flutter with clean architecture 
