@@ -8,7 +8,7 @@ class LoadUsersUseCase {
   }) : _repsitory = repsitory;
   final UserRepsitory _repsitory;
 
-  Future<ResultStatus<User>> call({
+  Future<ResultStatus<List<User>>> call({
     int page = 1,
     required int limit,
     required int skip,

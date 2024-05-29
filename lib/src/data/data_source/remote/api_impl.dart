@@ -11,7 +11,7 @@ class ApiImpl implements Api {
   ApiImpl({required Dio dio}) : _dio = dio;
 
   @override
-  Future<ResultStatus<UserReadModel>> getUsers({
+  Future<ResultStatus<List<UserReadModel>>> getUsers({
     int page = 1,
     required int limit,
     required int skip,
@@ -23,15 +23,15 @@ class ApiImpl implements Api {
         var users = (response.data["users"] as List<dynamic>)
             .map((userJson) => UserReadModel.fromJson(userJson))
             .toList();
-        return ResultStatus<UserReadModel>(
-          data: convertToListOf<UserReadModel>(users),
+        return ResultStatus<List<UserReadModel>>(
+          data: users,
           message: "",
           status: true,
         );
       }
       return ResultStatus();
     } on DioException catch (e) {
-      return DioExceptionHandler.handleCatch<UserReadModel>(e);
+      return DioExceptionHandler.handleCatch(e);
     }
   }
 }
