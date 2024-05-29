@@ -21,11 +21,14 @@ class UserPageViewModel extends ChangeNotifier {
   int get currentPage => _currentPage;
   bool _hasReachedEnd = false;
   bool get hasReachedEnd => _hasReachedEnd;
+  String? _statusMessage;
+  String get statusMessage => _statusMessage ?? "";
 
   Future<void> fetchUsers({bool isRefresh = false}) async {
     if (isRefresh) {
       _users.clear();
       _currentPage = 0;
+      _hasReachedEnd = false;
     }
     if (_hasReachedEnd) return;
     _pageStatus = PageStatus.loading;
@@ -34,13 +37,14 @@ class UserPageViewModel extends ChangeNotifier {
     final result = await _loadUsersUseCase(limit: 10, skip: _users.length);
     if (result.status) {
       _currentPage++;
-      var data = result.data?.fold<List<User>>((l) => [], (r) => r);
+      var data = result.data;
       _users.addAll(data!);
       _pageStatus = PageStatus.success;
       _hasReachedEnd = data.isEmpty;
       notifyListeners();
     } else {
       _pageStatus = PageStatus.failed;
+      _statusMessage = result.message;
       notifyListeners();
     }
   }

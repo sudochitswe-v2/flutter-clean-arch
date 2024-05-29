@@ -41,8 +41,8 @@ class _UserPageState extends State<UserPage> {
               )
             : const ContentWidget(),
         PageStatus.success => const ContentWidget(),
-        PageStatus.failed => const Center(
-            child: Text("Error"),
+        PageStatus.failed => Center(
+            child: Text(context.watch<UserPageViewModel>().statusMessage),
           )
       },
     );
