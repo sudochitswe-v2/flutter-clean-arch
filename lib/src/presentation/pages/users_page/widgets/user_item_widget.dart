@@ -63,7 +63,7 @@ class _ItemPhoto extends StatelessWidget {
 }
 
 class _ItemDescription extends StatelessWidget {
-  const _ItemDescription({super.key, required this.user});
+  const _ItemDescription({required this.user});
 
   final User user;
 
